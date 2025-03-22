@@ -1,0 +1,1 @@
+ps -g root -o drs= | xargs | tr ' ' '+' | bc

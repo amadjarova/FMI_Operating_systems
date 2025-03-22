@@ -1,0 +1,1 @@
+find ~pesho -links +1 -printf '%T@ %i\n' | sort -t ' ' -k 1 -r -n | head -n 1 | cut -d ' ' -f 2
