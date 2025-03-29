@@ -1,0 +1,1 @@
+ps -e -o comm=,user= | grep -E "^vim" | sort | uniq -c | awk ' $1 > 1 { print $3 }'
