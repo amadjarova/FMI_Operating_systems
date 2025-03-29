@@ -10,16 +10,18 @@ if [[ ! -d "${1}" || ! -d "${2}" ]] ; then
     exit 2
 fi
 
-src="$(realpath "${1}")"
-dst="$(realpath "${2}")"
+if [[ "$(whoami)" == "root" ]] ; then
+    src="$(realpath "${1}")"
+    dst="$(realpath "${2}")"
 
-while read file ; do
-    withDst="$(echo "${file}" | sed -E "s|${src}(.*)|${dst}\1|")"
+    while read file ; do
+        withDst="$(echo "${file}" | sed -E "s|${src}(.*)|${dst}\1|")"
 
-    dirName="$(dirname "${withDst}")"
+        dirName="$(dirname "${withDst}")"
 
-    mkdir -p "${dirName}"
-    fileName="$(basename "${file}")"
+        mkdir -p "${dirName}"
+        fileName="$(basename "${file}")"
 
-    mv "${file}" "${dirName}/${fileName}"
-done< <(find "${src}" -type f -name "*${3}*")
+        mv "${file}" "${dirName}/${fileName}"
+    done< <(find "${src}" -type f -name "*${3}*")
+fi
