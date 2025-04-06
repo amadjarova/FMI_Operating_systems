@@ -37,4 +37,4 @@ while read file ; do
     else
         mv "${file}" c/
     fi
-done< <(find . -maxdepth 1 -type f -name '*.txt')
+done< <(find . -maxdepth 1 -type f )
