@@ -23,7 +23,7 @@ while read file ; do
             pw="$(pwgen)"
             secondWord="$(echo "${word}" | cut -d '=' -f 2)"
             firstWord="$(echo "${word}" | cut -d '=' -f 1)"
-            sed -i -E "/^#/! s/(\b)${firstWord}(\b)/\1${pw}${secondWord}\2/g" "${file}"
+            sed -i -E "/^#/! s/\b${firstWord}\b/${pw}${secondWord}/g" "${file}"
             echo "${pw}${secondWord}=${secondWord}" >>"${pwgens}"
         done< "${words}"
 done< "${files}"
@@ -32,7 +32,7 @@ while read file ; do
         while read word ; do
                 old="$(echo "${word}" | cut -d '=' -f 1)"
                 new="$(echo "${word}" | cut -d '=' -f 2)"
-                sed -i -E "s/(\b)${old}(\b)/\1${new}\2/g" "${file}"
+                sed -i -E "s/\b${old}\b/${new}/g" "${file}"
         done< "${pwgens}"
 done< "${files}"
 
