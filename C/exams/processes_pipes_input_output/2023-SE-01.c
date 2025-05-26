@@ -34,7 +34,7 @@ void processFile(char* fileName) {
 
         char hashFileName[4096];
         strcpy(hashFileName, fileName);
-        strncat(hashFileName, ".hash", 4096 - strlen(hashFileName) + 1);
+        strncat(hashFileName, ".hash", 4096 - strlen(hashFileName) - 1);
 
         int fd = open(hashFileName, O_CREAT | O_TRUNC | O_WRONLY, 0600);
         if(fd == -1) {
