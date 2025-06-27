@@ -118,6 +118,12 @@ int main(int argc, char* argv[]) {
                 kill_wrapper(pids[i], SIGTERM);
             }
 
+            for(int i = 0; i < argc -1; i++) {
+                if(wait(NULL) == -1) {
+                    err(26, "wait");
+                }
+            }
+
             exit(0);
         }
     }
